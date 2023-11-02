@@ -11,8 +11,9 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
+# images should be public
 imagePullSecrets:
-    - name: docker-registry-secret
+  #- name: docker-registry-secret
 
 nameOverride: "aiq-agent-k8s"
 fullnameOverride: "aiq-agent-k8s"
