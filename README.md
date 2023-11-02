@@ -1,7 +1,5 @@
 # helm-charts
 
-*****Work In Progress**
-
 This is the public area for AttackIQ helm charts.
 
 ## [aiq-agent-k8s](charts/aiq-agent-k8s/)
