@@ -2,15 +2,17 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: agent-config
+  namespace: {{ .Values.namespace }}
 binaryData:
   config.yml:
-    {{ .Files.Get "files/config.yml" | b64enc | indent 4 }}
+    {{ .Files.Get .Values.agentConfigFile | b64enc | indent 4 }}
 
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: entrypoint
+  namespace: {{ .Values.namespace }}
 binaryData:
   entrypoint.sh:
     {{- .Files.Get "files/entrypoint.sh" | b64enc | indent 4 }}
@@ -20,6 +22,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: evil-pod
+  namespace: {{ .Values.namespace }}
 binaryData:
   evil-pod.sh:
     {{- .Files.Get "files/evil-pod/evil-pod.sh" | b64enc | indent 4 }}
@@ -29,6 +32,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: evil-pod-entrypoint
+  namespace: {{ .Values.namespace }}
 binaryData:
   evil-pod-entrypoint.sh:
     {{- .Files.Get "files/evil-pod/evil-pod-entrypoint.sh" | b64enc | indent 4 }}
