@@ -1,0 +1,9 @@
+global:
+  auth-token: <PUT YOUR AUTH TOKEN HERE>
+  platform-address: <PUT YOUR ATTACKIQ SERVER HERE>
+  platform-port: 443
+  use-https: true
+  verify-ssl: true
+  update-policy: disabled
+0:
+  guid: <PUT YOUR GUID HERE>
