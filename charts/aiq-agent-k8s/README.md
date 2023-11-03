@@ -65,3 +65,7 @@ When this command finishes, you should have a pod named `aiq-agent-k8s-0` runnin
 `helm uninstall --debug aiq-agent-k8s -n aiq-agent-k8s`
 
 This will remove the chart and all chart-managed resources. The agent config file will remain behind unless you remove it yourself.
+
+If you want to delete the agent configuration, use this command:
+
+`kubectl delete configmap agent-config -n aiq-agent-k8s`
