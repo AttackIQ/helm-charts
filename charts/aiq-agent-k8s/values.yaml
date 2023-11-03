@@ -110,6 +110,3 @@ volumeMounts:
     mountPath: /etc/evil-pod-entrypoint
 
 entrypoint: "/etc/entrypoint/entrypoint.sh"
-
-# the user should override this with their own configuration.
-agentConfigFile: "files/config.yml"
