@@ -24,6 +24,14 @@ CONFIG_MAP=/etc/agent-config/config.yml
 IDV2=/opt/attackiq/agent-data/idv2
 YQ=/usr/bin/yq
 
+if [[ ! -f $CONFIG_MAP ]]; then
+  echo "*** ERROR"
+  echo "*** Config map $CONFIG_MAP not found!"
+  echo "*** An agent configuration must be supplied!"
+  echo "*** See https://github.com/AttackIQ/helm-charts/tree/main/charts/aiq-agent-k8s/README.md for setup instructions!"
+  tail -F /dev/null
+fi
+
 # get value from config map
 function get_config_map_value {
   local key=$1
