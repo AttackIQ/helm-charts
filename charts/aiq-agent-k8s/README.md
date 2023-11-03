@@ -69,3 +69,13 @@ This will remove the chart and all chart-managed resources. The agent config fil
 If you want to delete the agent configuration, use this command:
 
 `kubectl delete configmap agent-config -n aiq-agent-k8s`
+
+## Troubleshooting
+
+If you get an error when trying to start the deployment that looks like this:
+
+```
+Warning  FailedMount  22s (x7 over 53s)  kubelet MountVolume.SetUp failed for volume "config-volume" : configmap "agent-config" not found 
+```
+
+It means that you have not added the agent config (see above). Double check your work.
