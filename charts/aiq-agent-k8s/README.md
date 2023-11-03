@@ -78,4 +78,17 @@ If you get an error when trying to start the deployment that looks like this:
 Warning  FailedMount  22s (x7 over 53s)  kubelet MountVolume.SetUp failed for volume "config-volume" : configmap "agent-config" not found 
 ```
 
-It means that you have not added the agent config (see above). Double check your work.
+It means that you have not added the agent config (see above). Double check your setup:
+
+`kubectl get configmap agent-config -n aiq-agent-k8s`
+
+Should return something like the following:
+
+```
+NAME           DATA   AGE
+agent-config   1      23s
+```
+
+You can directly examine the config map contents with the following:
+
+`kubectl get configmap agent-config -n aiq-agent-k8s -o yaml`
