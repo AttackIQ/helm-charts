@@ -3,7 +3,7 @@ name: aiq-agent-k8s
 description: A Helm chart for running the AttackIQ agent in Kubernetes.
 type: application
 # version of this chart, bump if changes are made.
-version: 0.1.6
+version: 0.1.7
 # Version of the app.
 # For aiq-agent-k8s it should be the version (tag) of the container to deploy
 # which will directly map to the agent version, suffixed by an incrementing

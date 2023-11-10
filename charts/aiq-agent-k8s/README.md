@@ -2,11 +2,16 @@
 
 ![Version: 3.8.11](https://img.shields.io/badge/Version-3.8.11-informational?style=flat-square)
 
-*Work In Progress*
-
 This is a helm chart for provisioning an AttackIQ endpoint agent into a k8s cluster.
 
-Agents are provisioned via a StatefulSet and come with core set of helper scripts for test content.
+Agents are provisioned via a StatefulSet. By default, only one agent will be started.
+
+## Prerequisites
+
+* Kubernetes cluster where you want to install the agent.
+* System that has appropriate roles and permissions on the cluster. This is where we will install the helm chart.
+* The appropriate versions of `helm` and `kubectl` for your environment on that system.
+* A valid auth token and platform address for the agent.
 
 ## Repo
 
@@ -56,9 +61,14 @@ You are now ready to install the helm chart.
 
 ## Install
 
-`helm install --debug aiq-agent-k8s attackiq/aiq-agent-k8s --create-namespace --namespace aiq-agent-k8s --wait`
+`helm install --debug aiq-agent-k8s attackiq/aiq-agent-k8s --create-namespace --namespace aiq-agent-k8s --wait --timeout 10m`
 
 When this command finishes, you should have a pod named `aiq-agent-k8s-0` running the agent. Check the logs on the pod for any errors or agent messages.
+
+Note that while we have given a `--timeout` of `10m`, depending on the speed of your network, it may take longer to pull the initial image which is a few hundred
+megabytes in size.
+If the above command times out, check the status with `kubectl get pods -n aiq-agent-k8s` and `kubectl describe pod <pod_name> -n aiq-agent-k8s` to see the
+specific status of the pod. 
 
 ## Uninstall
 
@@ -71,6 +81,8 @@ If you want to delete the agent configuration, use this command:
 `kubectl delete configmap agent-config -n aiq-agent-k8s`
 
 ## Troubleshooting
+
+### Config
 
 If you get an error when trying to start the deployment that looks like this:
 
@@ -92,3 +104,8 @@ agent-config   1      23s
 You can directly examine the config map contents with the following:
 
 `kubectl get configmap agent-config -n aiq-agent-k8s -o yaml`
+
+### Other
+
+If the deployment is in an unrecoverable state such as `ImagePullBackoff`, you may delete the deployment with helm (see Uninstall),
+fix the issue, and reinstall it.

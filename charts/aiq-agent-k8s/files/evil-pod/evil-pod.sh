@@ -2,7 +2,7 @@
 k=kubectl
 IN_SS=0  # whether the hostname format matches the "StatefulSets" convention.
 ORD=0    # which pod we are currently on (by ordinal)
-ENV=/etc/kenv # k8s environment variables
+ENV=/etc/aiq_kenv # k8s environment variables
 
 [[ $(hostname) =~ -([0-9]+)$ ]] && IN_SS=1
 

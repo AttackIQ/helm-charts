@@ -71,7 +71,7 @@ function init_kubeconfig {
 }
 
 function save_kenv {
-  outfile="/etc/kenv"
+  outfile="/etc/aiq_kenv"
   env | grep -E '^KUBERNETES' > $outfile
   sed -i 's/\(^KUBERNETES.*\)/export \1/g' $outfile
 }
