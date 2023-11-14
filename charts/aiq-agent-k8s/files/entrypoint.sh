@@ -82,11 +82,12 @@ $AGENT --write-config
 echo "Getting guid from config map..."
 get_config_map_value ".${ORD}.guid"
 guid=$VAL
-if [[ -n $guid ]]; then
+if [[ -n $guid && $guid != "null" ]]; then
   echo "$guid" > $IDV2
   echo "Set guid to $guid"
 else
-  echo "Error: cannot find a guid for pod ${ORD} -- this may need to be added to config map."
+  echo "Error: cannot find a guid for pod ${ORD} -- must be added to config map."
+  tail -F /dev/null
 fi
 
 # get and update the rest of the agent configuration
