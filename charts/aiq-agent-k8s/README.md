@@ -19,7 +19,7 @@ These are the tool versions used to develop and deploy the chart. Your kubernete
 
 * `kubectl`: at least `v1.26.1`
 * `helm`: at least `v3.11.2`
-* `minikube`: at least `v1.29.0`
+* `minikube`: at least `v1.29.0` (if deploying locally)
 
 ## Repo
 
