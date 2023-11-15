@@ -13,6 +13,14 @@ Agents are provisioned via a StatefulSet. By default, only one agent will be sta
 * The appropriate versions of `helm` and `kubectl` for your environment on that system.
 * A valid auth token and platform address for the agent.
 
+### Tool Versions
+
+These are the tool versions used to develop and deploy the chart. Your kubernetes should at least be on version `v1.26` -- use earlier releases at your own risk!
+
+* `kubectl`: at least `v1.26.1`
+* `helm`: at least `v3.11.2`
+* `minikube`: at least `v1.29.0`
+
 ## Repo
 
 `helm repo add attackiq https://helm-charts.attackiq.net/`
