@@ -19,7 +19,7 @@ Agents are provisioned via a StatefulSet. By default, only one agent will be sta
 
 To refresh the repo (get new helm charts):
 
-`helm repo refresh`
+`helm repo update`
 
 To see which version of the chart you have:
 
@@ -69,6 +69,11 @@ Note that while we have given a `--timeout` of `10m`, depending on the speed of 
 megabytes in size.
 If the above command times out, check the status with `kubectl get pods -n aiq-agent-k8s` and `kubectl describe pod <pod_name> -n aiq-agent-k8s` to see the
 specific status of the pod. 
+
+### Setting Replica Count
+If you wish to have more than one agent, make sure you have the following:
+* In your configuration map for the agent, make sure to assign a GUID to the agent slot. These are numbered starting from 0. If you do not assign one, the pod will be provisioned but the agent will not be started.
+* When you install the chart per the above, add the argument `--set replicaCount=N`, where N is the number of agents that you want. The default is 1 unless this value is overridden.
 
 ## Uninstall
 
