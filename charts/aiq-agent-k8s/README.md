@@ -4,8 +4,6 @@
 
 This is a helm chart for provisioning an AttackIQ endpoint agent into a k8s cluster.
 
-Agents are provisioned via a StatefulSet. By default, only one agent will be started.
-
 ## Prerequisites
 
 * Kubernetes cluster where you want to install the agent.
