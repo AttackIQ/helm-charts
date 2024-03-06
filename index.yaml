@@ -3,6 +3,16 @@ entries:
   aiq-agent-k8s:
   - apiVersion: v2
     appVersion: 3.8.21-3
+    created: "2024-03-06T18:27:15.400599232Z"
+    description: A Helm chart for running the AttackIQ agent in Kubernetes.
+    digest: 5789b3ba6d3100237cfa6bab21c012fcc3ec88a30fad61fc0a3572040d074ce3
+    name: aiq-agent-k8s
+    type: application
+    urls:
+    - https://github.com/AttackIQ/helm-charts/releases/download/aiq-agent-k8s-0.4.0/aiq-agent-k8s-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v2
+    appVersion: 3.8.21-3
     created: "2024-03-06T17:17:54.012883042Z"
     description: A Helm chart for running the AttackIQ agent in Kubernetes.
     digest: 154e24c9ec4a674fdbb263b3903dc13995e28f4619451e65dc5c9d87a73892af
@@ -121,4 +131,4 @@ entries:
     urls:
     - https://github.com/AttackIQ/helm-charts/releases/download/aiq-agent-k8s-0.1.3/aiq-agent-k8s-0.1.3.tgz
     version: 0.1.3
-generated: "2024-03-06T17:17:54.012958623Z"
+generated: "2024-03-06T18:27:15.400697556Z"
