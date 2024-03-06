@@ -16,12 +16,14 @@ else
   tail -F /dev/null
 fi
 
-AGENT_DIR=/opt/attackiq/agent
+AGENT_DIR=/home/aiq-svc/.attackiq/agent
+AGENT_DATA_DIR=/home/aiq-svc/.attackiq/agent-data
+AGENT_LOG_DIR=/var/log/attackiq
 AGENT=${AGENT_DIR}/ai_exec_server
 AGENT_CONFIG=${AGENT_DIR}/config.yml
-AGENT_RESTART=${AGENT_DIR}/ai-agent-restart.sh
+AGENT_EXE=${AGENT_DIR}/ai_exec_server
 CONFIG_MAP=/etc/agent-config/config.yml
-IDV2=/opt/attackiq/agent-data/idv2
+IDV2=${AGENT_DATA_DIR}/idv2
 YQ=/usr/bin/yq
 
 if [[ ! -f $CONFIG_MAP ]]; then
@@ -86,8 +88,7 @@ if [[ -n $guid && $guid != "null" ]]; then
   echo "$guid" > $IDV2
   echo "Set guid to $guid"
 else
-  echo "Error: cannot find a guid for pod ${ORD} -- must be added to config map."
-  tail -F /dev/null
+  echo "Warning: cannot find a fixed guid for pod ${ORD} -- using dynamically generated one."
 fi
 
 # get and update the rest of the agent configuration
@@ -121,14 +122,19 @@ update_policy=$VAL
 echo "Update policy=$update_policy"
 update_agent_config_value ".update-policy = \"${update_policy}\""
 
+# set the is-k8s-agent flag directly. users should not be able to override this.
+# shellcheck disable=SC2002
+cat "$AGENT_CONFIG" | sed 's/^is-k8s-agent.*/is-k8s-agent: true/' > "$AGENT_CONFIG".tmp
+mv "$AGENT_CONFIG".tmp "$AGENT_CONFIG"
+
 echo "Setting up kubeconfig"
 init_kubeconfig
 
 echo "Saving kenv"
 save_kenv
 
-echo "Starting agent service"
-$AGENT_RESTART
+echo "Starting agent"
+$AGENT_EXE >/dev/null 2>&1 &
 
 echo "Tailing agent log..."
-tail -F /var/log/attackiq/aiq_agent_go.log
+tail -F ${AGENT_LOG_DIR}/aiq_agent_go.log

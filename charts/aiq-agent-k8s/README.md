@@ -1,9 +1,10 @@
 # AttackIQ Endpoint Agent in Kubernetes
 
-![App: 3.8.12](https://img.shields.io/badge/App_Version-3.8.12--3-informational?style=flat-square)
-![Chart: 0.2.2](https://img.shields.io/badge/Chart_Version-0.2.2-informational?style=flat-square)
+![Version: 3.8.11](https://img.shields.io/badge/Version-3.8.11-informational?style=flat-square)
 
 This is a helm chart for provisioning an AttackIQ endpoint agent into a k8s cluster.
+
+Agents are provisioned via a StatefulSet. By default, only one agent will be started.
 
 ## Prerequisites
 
@@ -11,14 +12,6 @@ This is a helm chart for provisioning an AttackIQ endpoint agent into a k8s clus
 * System that has appropriate roles and permissions on the cluster. This is where we will install the helm chart.
 * The appropriate versions of `helm` and `kubectl` for your environment on that system.
 * A valid auth token and platform address for the agent.
-
-### Tool Versions
-
-These are the tool versions used to develop and deploy the chart. Your kubernetes should at least be on version `v1.26` -- use earlier releases at your own risk!
-
-* `kubectl`: at least `v1.26.1`
-* `helm`: at least `v3.11.2`
-* `minikube`: at least `v1.29.0` (if deploying locally)
 
 ## Repo
 
