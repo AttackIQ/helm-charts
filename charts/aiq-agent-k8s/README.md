@@ -1,7 +1,7 @@
 # AttackIQ Endpoint Agent in Kubernetes
 
-![App: 3.8.12](https://img.shields.io/badge/App_Version-3.8.12--3-informational?style=flat-square)
-![Chart: 0.2.2](https://img.shields.io/badge/Chart_Version-0.2.2-informational?style=flat-square)
+![App: 3.8.21-3](https://img.shields.io/badge/App_Version-3.8.21--3-informational?style=flat-square)
+![Chart: 0.4.0-beta](https://img.shields.io/badge/Chart_Version-0.4.0--beta-informational?style=flat-square)
 
 This is a helm chart for provisioning an AttackIQ endpoint agent into a k8s cluster.
 
