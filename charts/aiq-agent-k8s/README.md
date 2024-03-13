@@ -12,13 +12,20 @@ This is a helm chart for provisioning an AttackIQ endpoint agent into a k8s clus
 * The appropriate versions of `helm` and `kubectl` for your environment on that system.
 * A valid auth token and platform address for the agent.
 
+## Deployment Requirements
+
+* This chart is designed to be deployed in a namespace dedicated to the agent. This is to avoid conflicts with other resources in the cluster.
+* AttackIQ strongly recommends to deploy the agent into a staging environment first to ensure that it is working as expected before deploying into a production environment.
+* The agent must be deployed in a location where it can reach the AttackIQ platform. This is typically in the same network as the rest of the endpoints that the agent will be monitoring.
+
 ### Tool Versions
 
-These are the tool versions used to develop and deploy the chart. Your kubernetes should at least be on version `v1.26` -- use earlier releases at your own risk!
+These are the tool versions used to develop and deploy the chart. Your kubernetes should at least be on version `v1.26` -- use earlier releases at your own risk! 
+While you may use the cluster of your choice when selecting a staging environment, we recommend using `minikube` for local testing.
 
 * `kubectl`: at least `v1.26.1`
 * `helm`: at least `v3.11.2`
-* `minikube`: at least `v1.29.0` (if deploying locally)
+* `minikube`: at least `v1.29.0` (staging/local only)
 
 ## Repo
 
