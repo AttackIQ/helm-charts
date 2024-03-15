@@ -16,7 +16,7 @@ This is a helm chart for provisioning an AttackIQ endpoint agent into a k8s clus
 
 * This chart is designed to be deployed in a namespace dedicated to the agent. This is to avoid conflicts with other resources in the cluster.
 * AttackIQ strongly recommends to deploy the agent into a staging environment first to ensure that it is working as expected before deploying into a production environment.
-* The agent must be deployed in a location where it can reach the AttackIQ platform. This is typically in the same network as the rest of the endpoints that the agent will be monitoring.
+* The agent must be deployed in a location where it can reach the AttackIQ platform, whether you are using the platform from the cloud or on-premises.
 
 ### Tool Versions
 
