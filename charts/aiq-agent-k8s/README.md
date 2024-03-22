@@ -86,8 +86,15 @@ specific status of the pod.
 
 ### Setting Replica Count
 If you wish to have more than one agent, make sure you have the following:
-* In your configuration map for the agent, make sure to assign a GUID to the agent slot. These are numbered starting from 0. If you do not assign one, the pod will be provisioned but the agent will not be started.
+* In your configuration map for the agent, make sure to assign a GUID to the agent slot. These are numbered starting from 0. If you do not assign one, the pod will be provisioned with a random GUID.
 * When you install the chart per the above, add the argument `--set replicaCount=N`, where N is the number of agents that you want. The default is 1 unless this value is overridden.
+
+### Setting GUID
+
+Pre-populating the GUID in the agent configmap is recommended, but not required. If you do not pre-populate the GUID, the 
+agent will generate a random GUID for itself. This means that if the chart is re-provisioned, such as in an update, the
+GUID will change and the agent will be treated as a new install by the platform. This can have undesirable effects on
+reporting, which is why we are recommending (but not enforcing) that you pre-populate the GUID.
 
 ## Uninstall
 
@@ -124,7 +131,16 @@ You can directly examine the config map contents with the following:
 
 `kubectl get configmap agent-config -n aiq-agent-k8s -o yaml`
 
-### Other
+### Agent
 
-If the deployment is in an unrecoverable state such as `ImagePullBackoff`, you may delete the deployment with helm (see Uninstall),
+Agent logs may be viewed by running the following command. Any connection or communications errors the agent encounters will be logged here.
+
+`kubectl logs aiq-agent-k8s-0 -n aiq-agent-k8s`
+
+If you have provisioned more than one agent, replace the `0` with the appropriate number.
+
+### Cluster
+
+* If the deployment is in an unrecoverable state such as `ImagePullBackoff`, you may delete the deployment with helm (see Uninstall),
 fix the issue, and reinstall it.
+* If the initial image pull seems to be taking a long time, describe the pod to see if there are any errors. Otherwise, you may have a slow network connection.
