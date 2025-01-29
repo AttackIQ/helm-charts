@@ -56,9 +56,9 @@ function init_kubeconfig {
   fi
   if [[ -n $KUBERNETES_SERVICE_HOST && -n $KUBERNETES_PORT_443_TCP_PORT ]]; then
     kurl="https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_PORT_443_TCP_PORT"
-    $k config set-cluster default --server=$kurl --certificate-authority=$crt --embed-certs=true
+    $k config set-cluster default --server="$kurl" --certificate-authority="$crt" --embed-certs=true
     kt=$(cat $tok)
-    $k config set-credentials default --token=$kt
+    $k config set-credentials default --token="$kt"
     $k config set-context default --cluster default --user default
     $k config use-context default
     $k get pods
